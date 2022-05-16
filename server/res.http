@@ -7,7 +7,20 @@ POST http://localhost:5000/api/products
 Content-Type: application/json 
 
 {
-    "name": "eyeliner", 
-    "price": 999, 
-    "categoryId": 2
+    "name": "sdprayer", 
+    "price": 123, 
+    "categoryId": 1
 }
+
+
+###
+POST http://localhost:5000/api/admins
+Content-Type: application/json
+
+{
+    "name": "elhajoui", 
+    "password": "elhajoui123"
+}
+
+###
+GET http://localhost:5000/api/admins/56f6c2d1-37a4-41e1-b732-8fed525620b2

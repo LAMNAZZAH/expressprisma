@@ -25,3 +25,9 @@ model Category {
   name        String        @unique
   products    Product[]
 }
+
+model Admin {
+  id          String           @id @default(dbgenerated("public.uuid_generate_v4()"))
+  name        String           @unique
+  password    String        
+}

@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { PrismaClient } = require('@prisma/client'); 
+const { PrismaClient } = require('@prisma/client');
+
 
 const prisma = new PrismaClient()
 
@@ -31,16 +32,43 @@ router.post('/products', async (req, res, next) => {
   }
 })
 
+
 router.get('/products/:id', async (req, res, next) => {
-  res.send({})
+  try {
+    const productId = req.params.id; 
+  const selectProduct = await prisma.product.findUnique({
+    where: {
+      id: Number(productId)
+    }
+  });
+  res.json(selectProduct);
+  } catch (error) {
+    next(error)
+  }
 })
+
+
 
 router.delete('/products/:id', async (req, res, next) => {
   res.send({})
 })
 
 router.patch ('/products/:id', async (req, res, next) => {
-  res.send({})
+ 
+})
+
+
+
+router.post('/admins', async (req, res, next) => {
+  try {
+    const { name, password} = req.body 
+    const createAdmin = await prisma.admin.create({
+      data: { name, password}
+    });
+    res.json(createAdmin)
+  } catch (error) {
+    next(error)
+  }
 })
 
 module.exports = router;
